@@ -14,7 +14,7 @@ export default function App() {
 
   const handleSendEmail = () => {
     window.location.href =
-      "mailto:nebooshcertiificate960@gmail.com?subject=Certificate Verification Request";
+      "mailto:nebosh_validate@yahoo.com?subject=Certificate Verification Request";
     nextStep();
   };
 
