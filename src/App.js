@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./styles.css";
 import { ProgressBar } from "./ProgressBar";
+
 export default function App() {
   const [step, setStep] = useState(1);
   const [accepted, setAccepted] = useState(false);
@@ -13,8 +14,24 @@ export default function App() {
   const nextStep = () => setStep(step + 1);
 
   const handleSendEmail = () => {
-    window.location.href =
-      "mailto:nebosh_validate@yahoo.com?subject=Certificate Verification Request";
+    const subject = "Certificate Verification Request";
+
+    const body = `
+Certificate Verification Request
+
+Requester Details:
+
+Name: ${form.name}
+Organisation: ${form.organisation}
+Email: ${form.email}
+
+Please proceed with the verification request.
+`;
+
+    window.location.href = `mailto:nebosh_validate@yahoo.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
     nextStep();
   };
 
@@ -25,21 +42,25 @@ export default function App() {
       {step === 1 && (
         <div className="card">
           <h2>IMPORTANT, PLEASE READ BEFORE CONTINUING</h2>
+
           <p>
             We take the security of personal data and certificates extremely
             seriously. As part of the verification process, we will email the
             learner that was originally issued this certificate to authenticate
             your request.
           </p>
+
           <p>
             To allow the learner to identify who is requesting information
             relating to them, your name and organisation will be provided to the
             learner to allow them to authorise your request.
           </p>
+
           <p>
             Your email address will be used by us to confirm the outcome of your
             request within 2 working days of submission.
           </p>
+
           <p>
             Please note: The outcome of this request will be recorded and held by
             us for monitoring purposes.
@@ -71,6 +92,7 @@ export default function App() {
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
           />
+
           <input
             className="input"
             placeholder="Your Organisation *"
@@ -79,6 +101,7 @@ export default function App() {
               setForm({ ...form, organisation: e.target.value })
             }
           />
+
           <input
             className="input"
             placeholder="Your Email *"
@@ -113,14 +136,17 @@ export default function App() {
             has been sent to the learner that was issued this certificate for
             authentication.
           </h2>
+
           <p>
             Verification of this document is not complete until you have
             received formal verification by email, from us.
           </p>
+
           <p>
             An email will be sent to you within 2 working days confirming the
             outcome of your request.
           </p>
+
           <p>
             Full information of our verification process and additional guidance
             on how to verify certificates is available on our website.
