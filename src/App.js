@@ -31,7 +31,6 @@ Please proceed with the verification request.
     window.location.href = `mailto:nebosh_validate@yahoo.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
-
     nextStep();
   };
 
